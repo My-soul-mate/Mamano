@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>To My Super Mom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Cormorant+Garamond:wght@500;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div id="bgLayer"></div>
+<div id="bgOverlay"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+<div id="leaves"></div>
+
+<audio id="bgMusic" src="music.mp3" loop></audio>
+<audio id="voiceAudio" src="voice.opus"></audio>
+
+<!-- شاشة التحميل -->
+<section id="preloader" class="screen">
+<div class="glass loader-glass">
+<div class="leaf-icon">🌿</div>
+<h1>To My Super Mom</h1>
+<p>رسالة حب صُنعت بعناية لأغلى قلب</p>
+<div class="load-bar-wrap"><div class="load-bar-inner"></div></div>
+</div>
+</section>
+
+<!-- كلمة المرور -->
+<section id="passwordScreen" class="screen hidden">
+<div class="glass pw-glass">
+<span class="small-label">بوابة القلب</span>
+<h1 class="pw-title">To My Super Mom</h1>
+<p class="lead">
+ليس هذا مجرد موقع… بل هو رسالة حب وامتنان،
+صُنعت بعناية لأغلى قلب عرفته في حياتي.
+</p>
+<div class="hint-box">
+ليست كلمة عابرة… بل كلمة تعيش على لسانكِ،<br/>
+وتسبقكِ كلما رأيتِ شيئًا صغيرًا أو بسيطًا.
+</div>
+<div class="pw-form">
+<input type="password" id="pwInput" placeholder="اكتبي كلمة المرور هنا"/>
+<button class="btn-gold" id="pwBtn">افتحي قلبي</button>
+</div>
+<p class="err" id="pwErr"></p>
+</div>
+</section>
+
+<!-- صفحة الصوت -->
+<section id="voiceScreen" class="screen hidden">
+<div class="glass voice-glass">
+<span class="small-label">رسالة خاصة</span>
+<h1 class="mom-name">أمي نوال</h1>
+<p class="voice-note">قبل أن تدخلي... هناك شيء أريدكِ أن تسمعيه</p>
+<button class="btn-gold" id="playVoiceBtn">اضغطي هنا واسمعي قلبي</button>
+<div class="sound-wave" id="soundWave">
+<span></span><span></span><span></span><span></span><span></span>
+</div>
+<button class="btn-gold hidden" id="enterBtn" style="margin-top:24px">ادخلي يا أمي 🌿</button>
+</div>
+</section>
+
+<!-- الموقع -->
+<div id="app" class="hidden">
+
+<header id="topbar">
+<div>
+<span class="brand-title">To My Super Mom</span>
+<span class="brand-sub">صُنع بحب من ابنتكِ إيمان لأمي نوال</span>
+</div>
+<nav id="mainNav">
+<a href="#home">الرئيسية</a>
+<a href="#tree">الشجرة</a>
+<a href="#letter">رسالتي</a>
+<a href="#qualities">صفاتكِ</a>
+<a href="#unsaid">رسائل</a>
+<a href="#promises">وعودي</a>
+<a href="#heartwords">القلب</a>
+<a href="#meaning">ماذا تعنين</a>
+<a href="#gratitude">الامتنان</a>
+<a href="#thankstars">النجوم</a>
+<a href="#memories">الذكريات</a>
+<a href="#honor">اللوحة</a>
+<a href="#mirror">المرآة</a>
+<a href="#giftbox">الصندوق</a>
+<a href="#languages">42 لغة</a>
+<a href="#eyes">في عيوننا</a>
+<a href="#wisdom">الحكم</a>
+<a href="#polaroid">صور</a>
+<a href="#darija">بالدارجة</a>
+<a href="#prayer">الدعاء</a>
+</nav>
+<button class="btn-outline" id="musicToggle">⏸ إيقاف</button>
+</header>
+
+<main>
+
+<!-- الرئيسية -->
+<section id="home" class="section">
+<div class="sec-card glass">
+<div class="hero-grid">
+<div>
+<span class="small-label">إلى أغلى قلب</span>
+<h1>إلى أمي نوال، التي يسكن فضلها القلب</h1>
+<p>
+هذا المكان ليس إلا محاولة صغيرة لأقول لكِ إن مكانتكِ أكبر من الكلمات،
+وإن أثركِ في حياتنا لا يمكن اختصاره في رسالة واحدة.
+فبين حنانكِ، وصبركِ، ونصائحكِ، ودعواتكِ، وُلد في قلوبنا امتنان لا ينتهي.
+</p>
+</div>
+<div class="heart-wrap">
+<div class="heart-mom"><span>أمي نوال</span></div>
+<p class="heart-caption">نحبكِ دائمًا</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- شجرة العائلة -->
+<section id="tree" class="section">
+<div class="sec-card glass">
+<h2>شجرة العائلة 🌳</h2>
+<p class="sec-note">من جذور طيبة، تنبت القلوب الجميلة، وتبقى الروابط الصادقة أقوى من كل شيء.</p>
+<div class="family-tree" id="familyTree"></div>
+</div>
+</section>
+
+<!-- رسالة -->
+<section id="letter" class="section">
+<div class="sec-card glass">
+<h2>رسالة إلى أمي نوال 💌</h2>
+<p class="sec-note">اضغطي على الظرف لقراءة الرسالة</p>
+<div class="envelope-area">
+<div class="envelope" id="envelope">
+<div class="env-flap"></div>
+<div class="env-body">💌</div>
+</div>
+<div class="letter-content hidden" id="letterContent">
+<p>إلى القلب الذي اتسع لنا بكل حب وصدق…</p>
+<p>هناك أشخاص يضعهم الله في حياتنا ليكونوا غيمة ظل، وسندًا، ودعاءً صادقًا.</p>
+<p>لم تكوني يومًا مجرد عابرة في حياتي، بل كنتِ بمثابة أم لي، باهتمامكِ، بطيبتكِ، وبدعواتكِ التي ترافقني.</p>
+<p>لقد علّمتِني أن الحنان لا يحتاج إلى كلمات كثيرة، بل يكفي أن يكون القلب صادقًا.</p>
+<p>شكرًا لكِ على كل شيء، وأدامكِ الله نعمةً في حياتنا.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- صفات -->
+<section id="qualities" class="section">
+<div class="sec-card glass">
+<h2>صفات أمي نوال 💖</h2>
+<p class="sec-note">اضغطي على كل بطاقة لتظهر صفة من صفاتكِ الجميلة</p>
+<div class="qualities-grid" id="qualitiesGrid"></div>
+</div>
+</section>
+
+<!-- رسائل لم أقلها -->
+<section id="unsaid" class="section">
+<div class="sec-card glass">
+<h2>رسائل لم أقلها لكِ 📝</h2>
+<p class="sec-note">اضغطي على كل ورقة لتقرئي ما بداخلها</p>
+<div class="unsaid-cards" id="unsaidCards"></div>
+</div>
+</section>
+
+<!-- وعودي -->
+<section id="promises" class="section">
+<div class="sec-card glass">
+<h2>وعودي لأمي نوال 💍</h2>
+<p class="sec-note">محفورة في القلب، لا تمحوها السنوات</p>
+<div class="ring-wrap">
+<div class="ring"></div>
+<ul class="ring-list" id="ringList"></ul>
+</div>
+</div>
+</section>
+
+<!-- كلمات من قلبي -->
+<section id="heartwords" class="section">
+<div class="sec-card glass">
+<h2>كلمات من قلبي 💛</h2>
+<div class="typewriter-box" id="typewriterBox"></div>
+</div>
+</section>
+
+<!-- ماذا تعنين لي -->
+<section id="meaning" class="section">
+<div class="sec-card glass">
+<h2>ماذا تعنين لي يا أمي نوال ✨</h2>
+<div class="meaning-list" id="meaningList"></div>
+</div>
+</section>
+
+<!-- شجرة الامتنان -->
+<section id="gratitude" class="section">
+<div class="sec-card glass">
+<h2>شجرة الامتنان 🌳</h2>
+<p class="sec-note">اضغطي على أي ورقة لتكتشفي ما بداخلها</p>
+<div class="gratitude-tree" id="gratitudeTree"></div>
+</div>
+</section>
+
+<!-- نجوم الشكر -->
+<section id="thankstars" class="section">
+<div class="sec-card glass">
+<h2>نجوم الشكر ⭐</h2>
+<p class="sec-note">كل نجمة تحمل بيت شعر... اضغطي لتكتشفي</p>
+<div class="stars-field" id="starsField"></div>
+</div>
+<div class="modal-backdrop hidden" id="starModal">
+<div class="modal-box glass">
+<button class="close-btn" id="closeStarModal">×</button>
+<p id="starModalText"></p>
+</div>
+</div>
+</section>
+
+<!-- الذكريات -->
+<section id="memories" class="section">
+<div class="sec-card glass">
+<h2>دفتر الذكريات 📖</h2>
+<p class="sec-note">لحظات لا تُنسى مع أمي نوال</p>
+<div class="timeline" id="timelineEl"></div>
+</div>
+</section>
+
+<!-- لوحة الشرف -->
+<section id="honor" class="section">
+<div class="sec-card glass">
+<h2>لوحة شرف أمي نوال 🏆</h2>
+<div class="honor-board">
+<div class="honor-frame">
+<p class="honor-title">وسام الحنان والفضل والعطاء</p>
+<p class="honor-name">يُمنح إلى أمي نوال</p>
+<p class="honor-reason">تقديرًا لما منحتْه من حب وصبر وكرم</p>
+<p class="honor-from">من أبنائها ومحبيها</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- المرآة -->
+<section id="mirror" class="section">
+<div class="sec-card glass">
+<h2>مرآة القلب 🪞</h2>
+<p class="sec-note">اضغطي على المرآة لتكتشفي ما بداخلها</p>
+<div class="mirror-area">
+<div class="mirror-frame" id="mirrorFrame">
+<img src="mirror.jpg" alt="أمي نوال" class="mirror-img hidden" id="mirrorImg"/>
+<div class="mirror-glass">🪞</div>
+</div>
+<div class="mirror-words hidden" id="mirrorWords"></div>
+<p class="mirror-msg hidden" id="mirrorMsg">
+في هذه المرآة لا يظهر الجمال فقط،<br/>
+بل تظهر امرأة عظيمة اسمها أمي نوال.
+</p>
+</div>
+</div>
+</section>
+
+<!-- صندوق الامتنان -->
+<section id="giftbox" class="section">
+<div class="sec-card glass">
+<h2>صندوق الامتنان 🎁</h2>
+<p class="sec-note">اضغطي على الصندوق ليفتح لكِ قلبه</p>
+<div class="gift-area">
+<div class="gift-box" id="giftBox2">
+<div class="g-lid2"></div>
+<div class="g-body2"></div>
+<div class="g-rv2"></div>
+<div class="g-rh2"></div>
+</div>
+<div class="gift-cards hidden" id="giftCards"></div>
+</div>
+</div>
+</section>
+
+<!-- 42 لغة -->
+<section id="languages" class="section">
+<div class="sec-card glass">
+<h2>أحبكِ يا أمي بكل اللغات 🌍</h2>
+<p class="sec-note">42 لغة من حول العالم تقول لكِ: نحبكِ يا أمي</p>
+<div class="lang-grid" id="langGrid"></div>
+</div>
+</section>
+
+<!-- في عيوننا -->
+<section id="eyes" class="section">
+<div class="sec-card glass">
+<h2>أمي نوال في عيوننا 👀</h2>
+<p class="sec-note">
+في هذا الركن، لا تتكلم الكلمات الجاهزة،
+بل تتكلم القلوب التي عرفت أمي نوال عن قرب.
+</p>
+<div class="eyes-cards" id="eyesCards"></div>
+</div>
+</section>
+
+<!-- حكم -->
+<section id="wisdom" class="section">
+<div class="sec-card glass">
+<h2>حكم أمي نوال 📜</h2>
+<p class="sec-note">كلمات ونصائح لا تُنسى</p>
+<div class="wisdom-slider" id="wisdomSlider"></div>
+</div>
+</section>
+
+<!-- بولارويد -->
+<section id="polaroid" class="section">
+<div class="sec-card glass">
+<h2>لحظات جميلة 📸</h2>
+<div class="polaroid-wrap" id="polaroidWrap"></div>
+</div>
+</section>
+
+<!-- بالدارجة -->
+<section id="darija" class="section">
+<div class="sec-card glass">
+<h2>من القلب بالدارجة 🤍</h2>
+<div class="darija-cards" id="darijaCards"></div>
+</div>
+</section>
+
+<!-- الدعاء -->
+<section id="prayer" class="section">
+<div class="sec-card glass">
+<h2>دعاء من ابنتكِ إيمان 🤲</h2>
+<div class="prayer-box">
+<p>
+اللهم احفظ لنا أمي نوال،<br/>
+واملأ قلبها راحةً وطمأنينة،<br/>
+وأطل في عمرها على خير،<br/>
+واجزها عن حنانها وصبرها وتعبها خير الجزاء،<br/>
+ولا ترنا فيها بأسًا يبكينا،<br/>
+واجعل السعادة رفيقة أيامها دائمًا.
+</p>
+</div>
+</div>
+</section>
+
+<!-- الخاتمة -->
+<section id="finale" class="section">
+<div class="sec-card glass finale-card">
+<p class="finale-text">
+نحبكِ دائمًا يا أمي نوال،<br/>
+وستبقين في قلوبنا مقامًا لا يُنسى،<br/>
+ونعمةً نحمد الله عليها دائمًا.<br/>
+<strong>من أبنائكِ ومحبيكِ.</strong>
+</p>
+</div>
+</section>
+
+</main>
+
+<footer>
+<p>صُنع بكل حب واحترام من ابنتكِ إيمان</p>
+<p>لأنكِ تستحقين أكثر من مجرد كلمات 💛🌿</p>
+</footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
