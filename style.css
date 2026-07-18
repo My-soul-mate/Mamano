@@ -1,0 +1,650 @@
+:root{
+--bg:#1a1f16;
+--bg-soft:#232b1e;
+--olive:#6b7c4e;
+--olive-light:#9aad6e;
+--gold:#c9a84c;
+--gold-light:#e8d48b;
+--cream:#faf3e0;
+--text:#f5f0e1;
+--muted:#c4bda8;
+--border:rgba(201,168,76,0.18);
+--shadow:0 15px 50px rgba(0,0,0,0.4);
+}
+
+*{box-sizing:border-box;scroll-behavior:smooth;margin:0;padding:0}
+
+html,body{
+font-family:"Cairo",sans-serif;
+background:var(--bg);color:var(--text);
+overflow-x:hidden;min-height:100vh;
+}
+
+.hidden{display:none !important}
+
+/* خلفية */
+#bgLayer{
+position:fixed;inset:0;
+background-image:url("h1.jpg");
+background-size:cover;background-position:center;
+transition:background-image 1.8s ease;
+filter:brightness(0.25) saturate(0.8);
+z-index:-3;
+}
+
+#bgOverlay{
+position:fixed;inset:0;
+background:
+radial-gradient(circle at top right,rgba(107,124,78,0.15),transparent 30%),
+radial-gradient(circle at bottom left,rgba(201,168,76,0.12),transparent 30%),
+linear-gradient(180deg,rgba(26,31,22,0.6),rgba(26,31,22,0.92));
+z-index:-2;
+}
+
+/* ظلال */
+.orb{
+position:fixed;border-radius:50%;
+filter:blur(70px);opacity:0.12;z-index:-1;
+animation:floatOrb 14s ease-in-out infinite;
+}
+.orb1{width:420px;height:420px;top:-100px;right:-100px;background:var(--olive)}
+.orb2{width:380px;height:380px;left:-120px;bottom:8%;background:var(--gold);animation-delay:-5s}
+.orb3{width:340px;height:340px;top:38%;right:12%;background:var(--olive-light);animation-delay:-9s}
+
+@keyframes floatOrb{
+0%,100%{transform:translate(0,0)}
+50%{transform:translate(-20px,28px)}
+}
+
+/* أوراق متساقطة */
+#leaves{
+position:fixed;inset:0;
+pointer-events:none;z-index:5;
+overflow:hidden;
+}
+
+.leaf{
+position:absolute;top:-40px;
+font-size:1.4rem;
+opacity:0.7;
+animation:fallLeaf linear forwards;
+}
+
+@keyframes fallLeaf{
+0%{transform:translateY(0) rotate(0deg);opacity:0.7}
+100%{transform:translateY(110vh) rotate(360deg);opacity:0}
+}
+
+/* شاشات */
+.screen{min-height:100vh;display:grid;place-items:center;padding:24px}
+
+.glass{
+background:linear-gradient(160deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03));
+border:1px solid var(--border);
+backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+box-shadow:var(--shadow);border-radius:30px;
+}
+
+/* التحميل */
+.loader-glass{width:min(92vw,560px);padding:44px 28px;text-align:center}
+
+.leaf-icon{font-size:3rem;margin-bottom:16px;animation:leafSpin 3s ease-in-out infinite}
+@keyframes leafSpin{
+0%,100%{transform:rotate(-10deg) scale(1)}
+50%{transform:rotate(10deg) scale(1.1)}
+}
+
+#preloader h1{
+font-family:"Cormorant Garamond",serif;
+font-size:clamp(2rem,5vw,3.2rem);
+color:var(--gold-light);margin-bottom:10px;
+}
+#preloader p{color:var(--muted);line-height:2}
+
+.load-bar-wrap{height:3px;border-radius:999px;background:rgba(255,255,255,0.08);margin-top:28px;overflow:hidden}
+.load-bar-inner{height:100%;width:0;background:linear-gradient(90deg,var(--olive),var(--gold-light));border-radius:999px;animation:loadProgress 1.8s ease forwards}
+@keyframes loadProgress{to{width:100%}}
+
+/* كلمة المرور */
+.pw-glass{width:min(94vw,700px);padding:42px 28px;text-align:center}
+.voice-glass{width:min(92vw,600px);padding:48px 28px;text-align:center}
+
+.small-label{display:inline-block;color:var(--olive-light);letter-spacing:.14em;font-size:.9rem;margin-bottom:10px}
+
+.pw-title{
+font-family:"Cormorant Garamond",serif;
+font-size:clamp(2.2rem,5vw,3.8rem);
+color:var(--gold-light);margin-bottom:16px;
+}
+
+.lead{line-height:2;margin-bottom:14px}
+
+.hint-box{
+display:inline-block;padding:14px 20px;border-radius:18px;
+background:rgba(107,124,78,0.12);
+border:1px solid rgba(107,124,78,0.2);
+color:var(--muted);line-height:1.9;margin-bottom:22px;
+}
+
+.pw-form{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+
+input[type=password],input[type=text]{
+background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);
+color:var(--text);outline:none;min-width:280px;padding:14px 18px;
+border-radius:16px;font-size:1rem;font-family:inherit;
+}
+
+.btn-gold{
+padding:13px 24px;border-radius:18px;
+background:linear-gradient(135deg,var(--olive),var(--gold));
+color:#1a1f16;font-weight:700;font-size:1rem;
+border:none;cursor:pointer;font-family:inherit;
+transition:.25s ease;text-decoration:none;display:inline-block;
+}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(201,168,76,.25)}
+
+.btn-outline{
+padding:13px 24px;border-radius:18px;background:transparent;
+border:1px solid rgba(255,255,255,0.18);color:var(--text);
+font-weight:700;cursor:pointer;font-family:inherit;
+transition:.25s ease;font-size:1rem;text-decoration:none;display:inline-block;
+}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold-light)}
+
+.err{color:#ff8f8f;min-height:22px;margin-top:10px}
+
+/* صفحة الصوت */
+.mom-name{
+font-family:"Cormorant Garamond",serif;
+font-size:clamp(3rem,7vw,5rem);
+color:var(--gold-light);margin:16px 0 12px;
+animation:fadeInUp .8s ease both;
+}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+.voice-note{color:var(--muted);margin-bottom:28px;line-height:1.9}
+
+.sound-wave{display:flex;gap:6px;align-items:flex-end;justify-content:center;height:52px;margin:22px auto 0}
+.sound-wave span{width:5px;border-radius:999px;background:linear-gradient(180deg,var(--gold-light),var(--olive))}
+.sound-wave.playing span{animation:waveBar .7s ease-in-out infinite alternate}
+.sound-wave span:nth-child(1){height:16px;animation-delay:0s}
+.sound-wave span:nth-child(2){height:30px;animation-delay:.1s}
+.sound-wave span:nth-child(3){height:44px;animation-delay:.2s}
+.sound-wave span:nth-child(4){height:30px;animation-delay:.3s}
+.sound-wave span:nth-child(5){height:16px;animation-delay:.4s}
+@keyframes waveBar{from{transform:scaleY(1)}to{transform:scaleY(2)}}
+
+/* الشريط العلوي */
+#topbar{
+position:sticky;top:0;z-index:40;
+display:flex;align-items:center;justify-content:space-between;
+gap:14px;padding:14px 22px;
+backdrop-filter:blur(18px);background:rgba(26,31,22,.6);
+border-bottom:1px solid rgba(255,255,255,.08);flex-wrap:wrap;
+}
+.brand-title{font-family:"Cormorant Garamond",serif;font-size:1.55rem;color:var(--gold-light)}
+.brand-sub{font-size:.78rem;color:var(--muted);display:block;margin-top:2px}
+
+nav{display:flex;gap:6px;flex-wrap:wrap}
+nav a{
+color:var(--text);text-decoration:none;padding:7px 10px;border-radius:12px;
+background:rgba(255,255,255,.05);font-size:.82rem;transition:.22s ease;
+}
+nav a:hover{color:var(--gold-light);background:rgba(107,124,78,.18)}
+
+/* أقسام */
+.section{padding:56px 16px}
+.sec-card{width:min(1140px,94vw);margin:0 auto;padding:30px;border-radius:28px}
+.sec-card h2{font-size:clamp(1.6rem,4vw,2.3rem);color:var(--gold-light);margin-bottom:8px}
+.sec-note{color:var(--muted);line-height:2;margin-bottom:24px}
+
+/* الرئيسية */
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}
+.hero-grid h1{font-size:clamp(1.8rem,4vw,3rem);line-height:1.4;margin-bottom:14px}
+.hero-grid p{color:var(--muted);line-height:2;margin-bottom:20px}
+
+/* قلب أمي */
+.heart-wrap{display:flex;flex-direction:column;align-items:center;gap:18px}
+
+.heart-mom{
+width:140px;height:140px;
+background:linear-gradient(135deg,var(--olive-light),var(--olive));
+transform:rotate(-45deg);position:relative;
+animation:beatMom 1.3s infinite;
+box-shadow:0 0 40px rgba(107,124,78,.35);
+display:grid;place-items:center;
+}
+.heart-mom span{
+transform:rotate(45deg);
+color:var(--cream);font-weight:700;
+font-size:.95rem;text-align:center;
+}
+.heart-mom::before,.heart-mom::after{
+content:"";position:absolute;
+width:140px;height:140px;
+background:inherit;border-radius:50%;
+}
+.heart-mom::before{top:-70px;left:0}
+.heart-mom::after{top:0;right:-70px}
+
+@keyframes beatMom{
+0%,100%{transform:rotate(-45deg) scale(1)}
+30%{transform:rotate(-45deg) scale(1.07)}
+60%{transform:rotate(-45deg) scale(.97)}
+}
+
+.heart-caption{color:var(--gold-light);font-weight:700;font-size:1.1rem}
+
+/* شجرة العائلة */
+.family-tree{
+display:flex;flex-direction:column;
+align-items:center;gap:20px;
+padding:30px 10px;
+}
+
+.tree-level{
+display:flex;gap:20px;
+justify-content:center;flex-wrap:wrap;
+}
+
+.tree-node{
+padding:14px 20px;border-radius:20px;
+background:rgba(107,124,78,.15);
+border:1px solid rgba(107,124,78,.25);
+text-align:center;min-width:120px;
+transition:.25s ease;
+}
+.tree-node:hover{
+background:rgba(107,124,78,.25);
+box-shadow:0 0 20px rgba(201,168,76,.2);
+}
+.tree-node .name{color:var(--gold-light);font-weight:700;font-size:1.1rem}
+.tree-node .role{color:var(--muted);font-size:.85rem;margin-top:4px}
+
+.tree-line{
+width:2px;height:30px;
+background:linear-gradient(180deg,var(--olive),var(--gold));
+margin:0 auto;
+}
+
+.tree-node.distant{
+border:1px dashed rgba(201,168,76,.3);
+background:rgba(201,168,76,.08);
+margin-top:10px;
+}
+
+/* الظرف */
+.envelope-area{display:grid;place-items:center;gap:24px}
+
+.envelope{
+width:180px;height:130px;
+position:relative;cursor:pointer;
+}
+.env-body{
+position:absolute;bottom:0;
+width:180px;height:100px;
+background:linear-gradient(180deg,var(--olive),#4a5a35);
+border-radius:8px 8px 14px 14px;
+display:grid;place-items:center;
+font-size:2.5rem;
+}
+.env-flap{
+position:absolute;top:0;left:0;
+width:0;height:0;
+border-left:90px solid transparent;
+border-right:90px solid transparent;
+border-top:60px solid rgba(107,124,78,.7);
+transform-origin:top center;
+transition:.5s ease;
+}
+.envelope.opened .env-flap{transform:rotateX(180deg)}
+
+.letter-content{
+max-width:620px;padding:24px;border-radius:24px;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+}
+.letter-content p{line-height:2.2;margin-bottom:12px;color:var(--text)}
+.letter-content p:last-child{margin-bottom:0}
+
+/* الصفات */
+.qualities-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(175px,1fr));
+gap:16px;
+}
+.q-card{
+border-radius:22px;overflow:hidden;
+border:1px solid rgba(107,124,78,.2);
+background:rgba(107,124,78,.08);
+cursor:pointer;position:relative;
+min-height:220px;transition:.3s ease;
+}
+.q-card img{width:100%;height:220px;object-fit:cover;display:block;filter:brightness(.75)}
+.q-card-content{
+position:absolute;inset:0;
+display:flex;flex-direction:column;
+justify-content:center;align-items:center;
+text-align:center;padding:18px;
+background:rgba(26,31,22,.88);
+opacity:0;transition:.3s ease;
+}
+.q-card.show .q-card-content{opacity:1}
+.q-card-content h3{color:var(--gold-light);font-size:1.2rem;margin-bottom:8px}
+.q-card-content p{color:var(--text);line-height:1.8;font-size:.9rem}
+.q-hint{
+position:absolute;bottom:0;left:0;right:0;
+padding:10px;text-align:center;
+background:linear-gradient(0,rgba(0,0,0,.7),transparent);
+font-size:.85rem;color:var(--muted);
+}
+
+/* رسائل لم أقلها */
+.unsaid-cards{display:grid;gap:16px;max-width:700px;margin:0 auto}
+
+.unsaid-card{
+padding:20px;border-radius:22px;
+background:rgba(107,124,78,.1);
+border:1px solid rgba(107,124,78,.18);
+cursor:pointer;transition:.3s ease;
+}
+.unsaid-card:hover{background:rgba(107,124,78,.18)}
+.unsaid-label{color:var(--olive-light);font-weight:700;margin-bottom:8px}
+.unsaid-text{display:none;line-height:2.1;color:var(--text)}
+.unsaid-card.open .unsaid-text{display:block}
+
+/* الخاتم */
+.ring-wrap{position:relative;width:min(92vw,560px);min-height:520px;margin:0 auto;display:grid;place-items:center}
+.ring{
+position:absolute;width:340px;height:340px;border-radius:50%;
+border:16px solid rgba(107,124,78,.4);
+box-shadow:0 0 30px rgba(107,124,78,.15),inset 0 0 20px rgba(255,255,255,.06);
+animation:ringGlow 4s ease-in-out infinite;
+}
+@keyframes ringGlow{
+0%,100%{box-shadow:0 0 26px rgba(107,124,78,.15)}
+50%{box-shadow:0 0 44px rgba(201,168,76,.25)}
+}
+.ring-list{position:relative;width:min(86%,380px);list-style:none;display:grid;gap:12px}
+.ring-list li{
+padding:12px 16px;border-radius:16px;
+background:rgba(255,255,255,.06);
+border:1px solid rgba(255,255,255,.08);
+line-height:1.9;
+}
+
+/* كلمات القلب */
+.typewriter-box{
+min-height:200px;display:flex;flex-direction:column;
+gap:16px;align-items:center;justify-content:center;
+}
+.tw-line{
+color:var(--gold-light);font-size:1.15rem;
+font-weight:700;line-height:2;
+opacity:0;animation:twFade 1s ease forwards;
+}
+
+@keyframes twFade{to{opacity:1}}
+
+/* ماذا تعنين لي */
+.meaning-list{
+display:flex;flex-direction:column;
+gap:12px;align-items:center;
+}
+.meaning-item{
+padding:14px 24px;border-radius:20px;
+background:rgba(107,124,78,.1);
+border:1px solid rgba(107,124,78,.15);
+color:var(--gold-light);font-weight:700;
+font-size:1.1rem;
+opacity:0;transform:translateY(20px);
+transition:.5s ease;
+}
+.meaning-item.visible{opacity:1;transform:translateY(0)}
+
+/* شجرة الامتنان */
+.gratitude-tree{
+display:flex;flex-wrap:wrap;
+gap:10px;justify-content:center;
+padding:20px 0;
+}
+
+.g-leaf{
+padding:10px 16px;border-radius:30px;
+cursor:pointer;font-size:.9rem;
+font-weight:600;transition:.3s ease;
+color:var(--bg);
+}
+.g-leaf:nth-child(odd){background:linear-gradient(135deg,var(--olive-light),var(--olive))}
+.g-leaf:nth-child(even){background:linear-gradient(135deg,var(--gold),var(--gold-light))}
+.g-leaf:hover{transform:scale(1.08);box-shadow:0 5px 18px rgba(0,0,0,.2)}
+.g-leaf.revealed{
+background:rgba(107,124,78,.2) !important;
+color:var(--gold-light) !important;
+border:1px solid var(--gold);
+}
+
+/* نجوم الشكر */
+.stars-field{
+position:relative;width:min(92vw,600px);
+height:420px;margin:10px auto 0;
+}
+.star-btn{
+position:absolute;width:65px;height:65px;
+border-radius:50%;
+border:1px solid rgba(201,168,76,.25);
+background:radial-gradient(circle at 32% 32%,rgba(255,255,255,.15),rgba(201,168,76,.12));
+color:var(--gold-light);font-size:1.5rem;cursor:pointer;
+display:grid;place-items:center;
+box-shadow:0 6px 20px rgba(0,0,0,.25);
+transition:.22s ease;animation:starPulse 3s ease-in-out infinite;
+}
+.star-btn:hover{transform:scale(1.12);box-shadow:0 0 24px rgba(201,168,76,.3)}
+@keyframes starPulse{
+0%,100%{box-shadow:0 6px 20px rgba(0,0,0,.25)}
+50%{box-shadow:0 0 26px rgba(201,168,76,.28)}
+}
+
+.modal-backdrop{position:fixed;inset:0;z-index:90;background:rgba(26,31,22,.88);display:grid;place-items:center;padding:20px}
+.modal-box{width:min(92vw,500px);border-radius:28px;padding:28px;text-align:center;position:relative}
+.modal-box p{line-height:2.2;color:var(--text);font-size:1.1rem}
+
+.close-btn{
+position:absolute;top:12px;left:14px;width:38px;height:38px;
+border-radius:50%;background:rgba(255,255,255,.1);
+border:none;color:#fff;font-size:1.3rem;cursor:pointer;transition:.2s;
+}
+.close-btn:hover{background:rgba(255,255,255,.18)}
+
+/* الذكريات */
+.timeline{display:grid;gap:16px}
+.tl-item{
+padding:18px 20px 18px 24px;border-radius:20px;
+border-inline-start:4px solid var(--olive);
+background:rgba(107,124,78,.08);transition:.25s ease;
+}
+.tl-item:hover{background:rgba(107,124,78,.15)}
+.tl-item p{line-height:2.1;color:var(--text)}
+
+/* لوحة الشرف */
+.honor-board{display:grid;place-items:center;padding:20px}
+.honor-frame{
+padding:36px 30px;border-radius:28px;
+border:3px solid var(--gold);
+background:rgba(201,168,76,.06);
+text-align:center;max-width:560px;
+box-shadow:0 0 40px rgba(201,168,76,.12);
+}
+.honor-title{color:var(--gold-light);font-size:1.4rem;font-weight:700;margin-bottom:12px}
+.honor-name{color:var(--text);font-size:1.8rem;font-family:"Cormorant Garamond",serif;font-weight:700;margin-bottom:10px}
+.honor-reason{color:var(--muted);line-height:2;margin-bottom:10px}
+.honor-from{color:var(--olive-light);font-weight:600}
+
+/* المرآة */
+.mirror-area{display:grid;place-items:center;gap:20px}
+.mirror-frame{
+width:220px;height:280px;border-radius:50% 50% 48% 48%;
+border:6px solid var(--gold);
+background:linear-gradient(180deg,rgba(107,124,78,.15),rgba(201,168,76,.08));
+display:grid;place-items:center;
+cursor:pointer;position:relative;overflow:hidden;
+box-shadow:0 0 30px rgba(201,168,76,.15);
+transition:.4s ease;
+}
+.mirror-frame:hover{box-shadow:0 0 50px rgba(201,168,76,.3)}
+.mirror-glass{font-size:4rem;opacity:.4}
+.mirror-img{
+position:absolute;inset:0;width:100%;height:100%;
+object-fit:cover;border-radius:inherit;opacity:.6;
+}
+.mirror-frame.active .mirror-glass{display:none}
+.mirror-frame.active .mirror-img{display:block}
+
+.mirror-words{
+display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+}
+.mirror-word{
+padding:10px 18px;border-radius:20px;
+background:rgba(201,168,76,.12);
+border:1px solid rgba(201,168,76,.2);
+color:var(--gold-light);font-weight:700;
+animation:mwFade .6s ease forwards;
+opacity:0;
+}
+@keyframes mwFade{to{opacity:1}}
+
+.mirror-msg{
+text-align:center;line-height:2.2;
+color:var(--text);font-size:1.1rem;
+max-width:500px;
+}
+
+/* صندوق الامتنان */
+.gift-area{display:grid;place-items:center;gap:24px}
+.gift-box{width:160px;height:160px;position:relative;cursor:pointer}
+.g-body2{position:absolute;bottom:0;width:160px;height:110px;background:linear-gradient(180deg,var(--olive),#3d4a2d);border-radius:14px}
+.g-lid2{position:absolute;top:24px;width:160px;height:40px;background:linear-gradient(180deg,var(--olive-light),var(--olive));border-radius:12px;transform-origin:right center;transition:.45s ease;z-index:2}
+.g-rv2{position:absolute;top:0;left:71px;width:18px;height:160px;background:linear-gradient(180deg,var(--gold-light),var(--gold));z-index:3}
+.g-rh2{position:absolute;top:52px;left:0;width:160px;height:16px;background:linear-gradient(90deg,var(--gold-light),var(--gold));z-index:3}
+.gift-box.open .g-lid2{transform:rotate(-38deg) translateY(-16px)}
+
+.gift-cards{
+display:grid;gap:12px;max-width:600px;
+}
+.gift-card-item{
+padding:16px 20px;border-radius:18px;
+background:rgba(107,124,78,.1);
+border:1px solid rgba(107,124,78,.18);
+line-height:2;color:var(--text);
+animation:gcFade .5s ease forwards;opacity:0;
+}
+@keyframes gcFade{to{opacity:1}}
+
+/* 42 لغة */
+.lang-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:12px;
+}
+.lang-card{
+padding:14px 18px;border-radius:18px;
+background:rgba(107,124,78,.08);
+border:1px solid rgba(107,124,78,.15);
+display:flex;justify-content:space-between;
+align-items:center;
+transition:.25s ease;
+}
+.lang-card:hover{background:rgba(107,124,78,.18);transform:translateY(-2px)}
+.lang-word{color:var(--gold-light);font-weight:700;font-size:1.05rem}
+.lang-name{color:var(--muted);font-size:.85rem}
+
+/* في عيوننا */
+.eyes-cards{display:grid;gap:20px;max-width:700px;margin:0 auto}
+.eye-card{
+padding:24px;border-radius:24px;
+background:rgba(107,124,78,.08);
+border:1px solid rgba(107,124,78,.15);
+}
+.eye-card h3{color:var(--olive-light);margin-bottom:10px}
+.eye-card p{line-height:2.2;color:var(--text)}
+
+/* حكم */
+.wisdom-slider{
+display:flex;flex-direction:column;gap:14px;
+max-width:700px;margin:0 auto;
+}
+.wisdom-item{
+padding:18px 22px;border-radius:20px;
+border-inline-start:4px solid var(--gold);
+background:rgba(201,168,76,.06);
+line-height:2;color:var(--text);
+font-weight:600;
+}
+
+/* بولارويد */
+.polaroid-wrap{
+display:flex;gap:20px;flex-wrap:wrap;
+justify-content:center;
+}
+.polaroid-card{
+width:200px;padding:12px 12px 40px;
+background:var(--cream);
+border-radius:4px;
+box-shadow:0 8px 24px rgba(0,0,0,.25);
+transform:rotate(var(--rot));
+transition:.3s ease;cursor:pointer;
+}
+.polaroid-card:hover{transform:rotate(0deg) scale(1.05)}
+.polaroid-card img{width:100%;height:180px;object-fit:cover;border-radius:2px}
+
+/* بالدارجة */
+.darija-cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:12px;
+}
+.darija-item{
+padding:16px 20px;border-radius:18px;
+background:rgba(107,124,78,.08);
+border:1px solid rgba(107,124,78,.15);
+line-height:2;color:var(--text);
+text-align:center;
+}
+
+/* الدعاء */
+.prayer-box{
+max-width:650px;margin:0 auto;
+padding:30px;border-radius:24px;
+background:rgba(107,124,78,.08);
+border:1px solid rgba(107,124,78,.15);
+text-align:center;
+}
+.prayer-box p{line-height:2.4;color:var(--text);font-size:1.1rem}
+
+/* الخاتمة */
+.finale-card{text-align:center;padding:50px 30px}
+.finale-text{
+font-size:clamp(1.1rem,3vw,1.4rem);
+line-height:2.3;color:var(--text);
+}
+.finale-text strong{color:var(--gold-light)}
+
+/* التذييل */
+footer{text-align:center;padding:30px 16px 54px}
+footer p{color:var(--muted);line-height:2;margin-bottom:4px}
+
+/* توافق */
+@media(max-width:880px){
+.hero-grid{grid-template-columns:1fr}
+#topbar{flex-direction:column;align-items:stretch}
+.ring{width:280px;height:280px}
+.ring-wrap{min-height:460px}
+}
+
+@media(max-width:580px){
+.sec-card,.glass{padding:20px 16px;border-radius:22px}
+.star-btn{width:55px;height:55px;font-size:1.3rem}
+.stars-field{height:380px}
+.tree-node{min-width:100px;padding:10px 14px}
+.polaroid-card{width:160px}
+}
